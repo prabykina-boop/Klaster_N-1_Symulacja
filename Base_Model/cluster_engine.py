@@ -2,12 +2,16 @@ from server import Server
 
 SIM_DURATION = 8760.0
 
+
 class Base_Model_Engine:
 
-    def __init__(self):
+    def __init__(self, servers=None):
         self.current_time = 0.0
         # Inicjalizuje 3 serwery
-        self.servers = [Server(i) for i in range(1, 4)]
+        if servers is not None:
+            self.servers = servers
+        else:
+            self.servers = [Server(i) for i in range(1, 4)]
 
         self.state_durations = {'S3': 0.0, 'S2': 0.0, 'S1': 0.0, 'S0': 0.0}
         self.num_failures = 0
